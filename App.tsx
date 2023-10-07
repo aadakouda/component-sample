@@ -13,6 +13,7 @@ export default function App() {
   const dg33 = ['#0F213E', '#FF5E98']
   const dg45 = ['#AD00FE', '#00E0EE']
   const dg47 = ['#418CB7', '#FF8570']
+  const dark = ['#000', '#000']
   const [colors, setColors] = useState(dg33)
   return (
     <SafeAreaView style={{paddingTop: SB.currentHeight}}>
@@ -53,6 +54,12 @@ export default function App() {
           <Text> </Text>
           <LinearGradient colors={dg47} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={styles.button1}>
             <Pressable onPress={() => setColors(dg47)}>
+              <Text style={styles.text}>Button</Text>
+            </Pressable>
+          </LinearGradient>
+          <Text> </Text>
+          <LinearGradient colors={dark} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={styles.button1}>
+            <Pressable onPress={() => setColors(dark)}>
               <Text style={styles.text}>Button</Text>
             </Pressable>
           </LinearGradient>
