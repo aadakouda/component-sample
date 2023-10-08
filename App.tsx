@@ -7,14 +7,19 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, View, StatusBar as SB, Butt
 // background: linear-gradient(220.55deg, #FF9D7E 0%, #4D6AD0 100%);
 
 export default function App() {
-  const dg19 = ['#4D6AD0', '#FF9D7E']
-  const dg25 = ['#001C63', '#24CFC5']
-  const dg31 = ['#6B0013', '#4063BC']
-  const dg33 = ['#0F213E', '#FF5E98']
-  const dg45 = ['#AD00FE', '#00E0EE']
-  const dg47 = ['#418CB7', '#FF8570']
-  const dark = ['#000', '#000']
-  const [colors, setColors] = useState(dg33)
+  const gradientsSample = [
+['#4D6AD0', '#FF9D7E'],
+['#001C63', '#24CFC5'],
+['#6B0013', '#4063BC'],
+['#0F213E', '#FF5E98'], // 明るい色の中でもグレースケールで割と見やすい
+['#AD00FE', '#00E0EE'],
+['#4E4376', '#2b5876'],
+['#418CB7', '#FF8570'],
+['#243949', '#517FA4'],
+['#434343', '#222'],
+['#000', '#000'],
+  ]
+  const [colors, setColors] = useState(gradientsSample[3])
   return (
     <SafeAreaView style={{paddingTop: SB.currentHeight}}>
       <LinearGradient colors={colors} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={styles.background} />
@@ -22,77 +27,18 @@ export default function App() {
         <View style={styles.container}>
           <Text style={styles.text}>Open up App.tsx to start working on your app!</Text>
           <Text> </Text>
-          <LinearGradient colors={dg19} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={styles.button1}>
-            <Pressable onPress={() => setColors(dg19)}>
-              <Text style={styles.text}>Button</Text>
-            </Pressable>
-          </LinearGradient>
-          <Text> </Text>
-          <LinearGradient colors={dg25} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={styles.button1}>
-            <Pressable onPress={() => setColors(dg25)}>
-              <Text style={styles.text}>Button</Text>
-            </Pressable>
-          </LinearGradient>
-          <Text> </Text>
-          <LinearGradient colors={dg31} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={styles.button1}>
-            <Pressable onPress={() => setColors(dg31)}>
-              <Text style={styles.text}>Button</Text>
-            </Pressable>
-          </LinearGradient>
-          <Text> </Text>
-          <LinearGradient colors={dg33} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={styles.button1}>
-            <Pressable onPress={() => setColors(dg33)}>
-              <Text style={styles.text}>Button</Text>
-            </Pressable>
-          </LinearGradient>
-          <Text> </Text>
-          <LinearGradient colors={dg45} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={styles.button1}>
-            <Pressable onPress={() => setColors(dg45)}>
-              <Text style={styles.text}>Button</Text>
-            </Pressable>
-          </LinearGradient>
-          <Text> </Text>
-          <LinearGradient colors={dg47} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={styles.button1}>
-            <Pressable onPress={() => setColors(dg47)}>
-              <Text style={styles.text}>Button</Text>
-            </Pressable>
-          </LinearGradient>
-          <Text> </Text>
-          <LinearGradient colors={dark} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={styles.button1}>
-            <Pressable onPress={() => setColors(dark)}>
-              <Text style={styles.text}>Button</Text>
-            </Pressable>
-          </LinearGradient>
-          <Text> </Text>
-          <View style={styles.sample2}>
-            <Text style={styles.text}>hello world</Text>
-            <Text style={styles.text}>イメージはこんな感じ テステス</Text>
-            <Text style={styles.text}>あああああああああああああああああああああああああああああああああああああああああああああ</Text>
-            <Text> </Text>
-            <View style={styles.sample3}>
-              <Text style={styles.text}>hello world</Text>
-            </View>
-          </View>
-          <Text> </Text>
-          <View style={styles.sample2}>
-            <Text style={styles.text}>hello world</Text>
-            <Text style={styles.text}>イメージはこんな感じ テステス</Text>
-            <Text style={styles.text}>あああああああああああああああああああああああああああああああああああああああああああああ</Text>
-            <Text> </Text>
-            <View style={styles.sample3}>
-              <Text style={styles.text}>hello world</Text>
-            </View>
-            <Text> </Text>
-            <Pressable style={styles.button}>
-              <Text style={styles.text}>Button</Text>
-            </Pressable>
-          </View>
-          <Text> </Text>
-          <View style={styles.sample3}>
-            <Text style={styles.text}>hello world</Text>
-            <Text style={styles.text}>イメージはこんな感じ テステス</Text>
-            <Text style={styles.text}>あああああああああああああああああああああああああああああああああああああああああああああ</Text>
-          </View>
+          {
+            gradientsSample.map((gradient, i) => (
+              <>
+                <LinearGradient colors={gradient} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={styles.button1} key={i}>
+                  <Pressable onPress={() => setColors(gradient)}>
+                    <Text style={styles.text}>Button</Text>
+                  </Pressable>
+                </LinearGradient>
+                <Text> </Text>
+              </>
+            ))
+          }
           <Text> </Text>
           <View style={styles.sample2}>
             <Text style={styles.text}>hello world</Text>
@@ -149,9 +95,9 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    borderColor: 'rgba(256, 256, 256, 0.1)',
+    borderColor: 'rgba(0, 0, 0, 0.3)',
     borderStyle: 'solid',
-    borderWidth: 1,
+    borderWidth: 0.5,
   },
   background: {
     position: 'absolute',
