@@ -1,10 +1,18 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View, StatusBar as SB, Pressable } from 'react-native';
 import * as Haptics from 'expo-haptics'
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
+import Input from './src/Input';
+import Card from './src/Card';
+import BorderedButton from './src/BorderedButton';
+import Spacer from './src/Spacer';
+import Divider from './src/Divider';
+import { Select } from './src/Select';
+import { Header } from './src/Header';
+import { Footer } from './src/Footer';
 
 // background: linear-gradient(220.55deg, #FF5E98 0%, #0F213E 100%);
 // background: linear-gradient(220.55deg, #FF9D7E 0%, #4D6AD0 100%);
@@ -33,12 +41,18 @@ export default function App() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
   }
   const [isTapped, setIsTapped] = useState<boolean>(false)
+
+  const options = [
+    {label: 'りんご', value: 'apple'},
+    {label: 'バナナ', value: 'banana'},
+    {label: 'ぶどう', value: 'grape'},
+    {label: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', value: 'test'},
+  ]
+
   return (
     <SafeAreaView style={{paddingTop: SB.currentHeight, flex: 1}}>
       <LinearGradient colors={colors} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={styles.background} />
-      <View style={{width: '100%', alignItems: 'center', padding: 10}}>
-        <Text style={{color: '#FFF', fontSize: 25}}>Header</Text>
-      </View>
+      <Header title="Header"/>
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.text}>Open up App.tsx to start working on your app!</Text>
@@ -47,7 +61,7 @@ export default function App() {
             gradientsSample.map((gradient, i) => (
               <>
                 <LinearGradient colors={gradient} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={styles.button1} key={i}>
-                  <Pressable onPress={() => setColors(gradient)}>
+                  <Pressable onPress={() => setColors(gradient)} style={{...styles.button1, padding: 0}}>
                     <Text style={styles.text}>Button</Text>
                   </Pressable>
                 </LinearGradient>
@@ -69,7 +83,7 @@ export default function App() {
             <View style={styles.separetedCard}>
               <Text style={styles.cardText}>{card.front}</Text>
             </View>
-            <View style={{height: 0.5, width: '100%', backgroundColor: 'rgba(256, 256, 256, 0.5)'}} />
+            <Divider />
             <View style={styles.separetedCard}>
               {!isTapped ?
                 (<FontAwesome5Icon name='hand-pointer' size={20} style={styles.cardText} />) : (<Text style={styles.cardText}>{card.back}</Text>)
@@ -81,7 +95,7 @@ export default function App() {
             <View style={styles.separetedCard}>
               <Text style={styles.cardText}>{card.front}</Text>
             </View>
-            <View style={{height: 0.5, width: '100%', backgroundColor: 'rgba(256, 256, 256, 0.5)'}} />
+            <Divider />
             <View style={styles.separetedCard}>
               {!isTapped ?
                 (<AntDesignIcon name='question' size={20} style={styles.cardText} />) : (<Text style={styles.cardText}>{card.back}</Text>)
@@ -89,28 +103,26 @@ export default function App() {
             </View>
           </Pressable>
           <Text> </Text>
-          <View style={styles.sample2}>
-            <Text style={styles.text}>hello world</Text>
-            <Text style={styles.text}>イメージはこんな感じ テステス</Text>
-            <Text style={styles.text}>あああああああああああああああああああああああああああああああああああああああああああああ</Text>
-            <Text> </Text>
-            <View style={styles.sample3}>
-              <Text style={styles.text}>hello world</Text>
-            </View>
-          </View>
-          <Text> </Text>
           <View style={styles.sample3}>
             <Text style={styles.text}>hello world</Text>
             <Text style={styles.text}>イメージはこんな感じ テステス</Text>
             <Text style={styles.text}>あああああああああああああああああああああああああああああああああああああああああああああ</Text>
           </View>
+          <Text> </Text>
+          <Card>
+            <Text style={styles.text}>hello world</Text>
+            <Text style={styles.text}>イメージはこんな感じ テステス</Text>
+            <Text style={styles.text}>あああああああああああああああああああああああああああああああああああああああああああああ</Text>
+            <Spacer />
+            <Input placeholder='Sample' />
+            <Spacer />
+            <BorderedButton title='sample' />
+            <Spacer />
+            <Select options={options} />
+          </Card>
         </View>
       </ScrollView>
-      <View style={{width: '100%', paddingTop: 15, paddingBottom: 15, display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
-        <FontAwesome5Icon name="tasks" size={25} style={{color: '#FFF'}} />
-        <FontAwesome5Icon name="edit" size={25} style={{color: '#FFF'}} />
-        <FontAwesome5Icon name="wrench" size={25} style={{color: '#FFF'}} />
-      </View>
+      <Footer />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
@@ -167,7 +179,7 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 15,
-    borderColor: 'rgba(256, 256, 256, 0.4)',
+    borderColor: 'rgba(256, 256, 256, 0.7)',
     borderWidth: 1,
     borderStyle: 'solid',
     borderRadius: 100,
