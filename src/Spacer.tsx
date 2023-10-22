@@ -6,9 +6,9 @@ interface Props {
   style?: StyleProp<ViewStyle>
 }
 
-export function Spacer({width, height}: Props) {
+export function Spacer({width, height, style}: Props) {
   return (
-    <View style={{width: width ?? '100%', height: height ?? 15}} />
+    <View style={[style, {width: width ?? '100%', height: height ?? 15}]} />
   )
 }
 

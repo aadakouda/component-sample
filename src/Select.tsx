@@ -37,19 +37,19 @@ export function Select({options}: Props) {
           {options.map((option, i)=> (
             <Pressable key={i} onPress={() => setSelected(option.label)}>
               <View>
-              <Spacer/>
-              <View style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
-                  {option.label === selected &&
-                    <AntDesignIcon name='check' style={styles.text} />
-                  }
+                <Spacer/>
+                <View style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
+                    {option.label === selected &&
+                      <AntDesignIcon name='check' style={styles.text} />
+                    }
+                  </View>
+                  <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', flexGrow: 2, marginLeft: 10, marginRight: 10}}>
+                    <Text style={styles.text}>{option.label}</Text>
+                  </View>
+                  <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} />
                 </View>
-                <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', flexGrow: 2, marginLeft: 10, marginRight: 10}}>
-                  <Text style={styles.text}>{option.label}</Text>
-                </View>
-                <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} />
-              </View>
-              <Spacer/>
+                <Spacer/>
               </View>
             </Pressable>
           )).reduce<ReactNode[]>((prev, curr) => {
