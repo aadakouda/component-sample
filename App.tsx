@@ -1,18 +1,18 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View, StatusBar as SB, Pressable } from 'react-native';
 import * as Haptics from 'expo-haptics'
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
-import Input from './src/Input';
-import Card from './src/Card';
-import BorderedButton from './src/BorderedButton';
-import Spacer from './src/Spacer';
-import Divider from './src/Divider';
-import { Select } from './src/Select';
-import { Header } from './src/Header';
-import { Footer } from './src/Footer';
+import Input from './src/components/Input';
+import Card from './src/components/Card';
+import BorderedButton from './src/components/BorderedButton';
+import Spacer from './src/components/Spacer';
+import Divider from './src/components/Divider';
+import { Select } from './src/components/Select';
+import { Header } from './src/components/Header';
+import { Footer } from './src/components/Footer';
 
 // background: linear-gradient(220.55deg, #FF5E98 0%, #0F213E 100%);
 // background: linear-gradient(220.55deg, #FF9D7E 0%, #4D6AD0 100%);
